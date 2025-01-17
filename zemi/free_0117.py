@@ -124,8 +124,8 @@ class HappyMove(Node):
                 rclpy.spin_once(self)
             self.x0, self.y0 = self.x, self.y  # 次の辺の開始位置を更新
 
-            # 60度回転
-            while not self.rotate_angle(math.pi / 3):  # π/3ラジアン (60度) 回転
+            # 1200度回転
+            while not self.rotate_angle(math.pi*2 / 3):  # 2π/3ラジアン (120度) 回転
                 rclpy.spin_once(self)
             self.yaw0 = self.yaw  # 次の回転の基準角度を更新
 
@@ -163,6 +163,8 @@ def main(args=None):
     node = HappyMove()
 
     try:
+        print("60°回転するザマス")
+        node.
         print("正方形を描きます...")
         node.draw_square(2.0)  # 1辺が2mの正方形を描く
         print("円を描きます...")
