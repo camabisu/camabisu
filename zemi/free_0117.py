@@ -117,28 +117,40 @@ class HappyMove(Node):
             # ノードのスピンを実行（ROS2の通信を維持するため）
             rclpy.spin_once(self)
 
-
-    # 正方形を描く
     def draw_square(self, x):
-        for _ in range(4):  # 正方形の4辺を描く
+        for _ in range(3):  # 三角形3辺描く
             # 1辺を移動
             while not self.move_distance(x):
                 rclpy.spin_once(self)
             self.x0, self.y0 = self.x, self.y  # 次の辺の開始位置を更新
 
-            # 90度回転
-            while not self.rotate_angle(math.pi / 2):  # π/2ラジアン (90度) 回転
+            # 60度回転
+            while not self.rotate_angle(math.pi / 3):  # π/3ラジアン (60度) 回転
                 rclpy.spin_once(self)
             self.yaw0 = self.yaw  # 次の回転の基準角度を更新
 
-    # 円を描く
-    def draw_circle(self, r):
-        linear_speed = 0.2  # 前進速度 [m/s]
-        angular_speed = linear_speed / r  # 円軌道を保つ角速度 [rad/s]
-        circumference = 2 * math.pi * r  # 円周の長さ
-        duration = circumference / linear_speed  # 円を描くのに必要な時間 [秒]
+    
+    # 正方形を描く
+    #def draw_square(self, x):
+      #  for _ in range(4):  # 正方形の4辺を描く
+            # 1辺を移動
+       #     while not self.move_distance(x):
+        #        rclpy.spin_once(self)
+         #   self.x0, self.y0 = self.x, self.y  # 次の辺の開始位置を更新
 
-        self.move_time(duration, linear_speed, angular_speed)  # 円軌道を維持
+            # 90度回転
+          #  while not self.rotate_angle(math.pi / 2):  # π/2ラジアン (90度) 回転
+           #     rclpy.spin_once(self)
+            #self.yaw0 = self.yaw  # 次の回転の基準角度を更新
+
+    # 円を描く
+   # def draw_circle(self, r):
+    #    linear_speed = 0.2  # 前進速度 [m/s]
+     #   angular_speed = linear_speed / r  # 円軌道を保つ角速度 [rad/s]
+      #  circumference = 2 * math.pi * r  # 円周の長さ
+      #  duration = circumference / linear_speed  # 円を描くのに必要な時間 [秒]
+
+       # self.move_time(duration, linear_speed, angular_speed)  # 円軌道を維持
 
     # タイマーコールバック: 現在の速度をパブリッシュ
     def timer_callback(self):
@@ -152,7 +164,7 @@ def main(args=None):
 
     try:
         print("正方形を描きます...")
-        node.draw_square(2.0)  # 1辺が1mの正方形を描く
+        node.draw_square(2.0)  # 1辺が2mの正方形を描く
         print("円を描きます...")
         node.draw_circle(0.5)  # 半径0.5mの円を描く
     except KeyboardInterrupt:
