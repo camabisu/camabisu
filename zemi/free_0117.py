@@ -126,7 +126,7 @@ class HappyMove(Node):
     def draw_rotate_angle(self,yaw):
         for _ in range(2):
             # 120度回転
-            while not self.rotate_angle(math.pi*2 / 3):  # 2π/3ラジアン (120度) 回転
+            while not self.rotate_angle(math.pi*1 / 3):  # 2π/3ラジアン (120度) 回転
                 rclpy.spin_once(self)
             self.yaw0 = self.yaw  # 次の回転の基準角度を更新
 
@@ -167,7 +167,7 @@ def main(args=None):
         print("正方形を描きます...")
         node.draw_square(1.0)  # 1辺が2mの正方形を描く
         print("60°回転するザマス")
-        node.draw_rotate_angle(math.pi*2 / 3)
+        node.draw_rotate_angle(math.pi*1 / 3)
         #print("円を描きます...")
         #node.draw_circle(0.5)  # 半径0.5mの円を描く
     except KeyboardInterrupt:
