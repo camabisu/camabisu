@@ -116,20 +116,20 @@ class HappyMove(Node):
 
             # ノードのスピンを実行（ROS2の通信を維持するため）
             rclpy.spin_once(self)
-for _ in (3):
-    def draw_square(self, x):
-        #for _ in range(3):  # 三角形3辺描く
+    for _ in (3):
+        def draw_square(self, x):
+            #for _ in range(3):  # 三角形3辺描く
             # 1辺を移動
-            while not self.move_distance(x):
-                rclpy.spin_once(self)
-            self.x0, self.y0 = self.x, self.y  # 次の辺の開始位置を更新
-for _ in (2):
-    def draw_rotate_angle(self,yaw):
-        #for _ in range(2):
+                while not self.move_distance(x):
+                    rclpy.spin_once(self)
+                self.x0, self.y0 = self.x, self.y  # 次の辺の開始位置を更新
+    for _ in (2):
+        def draw_rotate_angle(self,yaw):
+            #for _ in range(2):
             # 120度回転
-            while not self.rotate_angle(math.pi*1 / 3):  # 2π/3ラジアン (120度) 回転
-                rclpy.spin_once(self)
-            self.yaw0 = self.yaw  # 次の回転の基準角度を更新
+                while not self.rotate_angle(math.pi*1 / 3):  # 2π/3ラジアン (120度) 回転
+                    rclpy.spin_once(self)
+                self.yaw0 = self.yaw  # 次の回転の基準角度を更新
 
     
     # 正方形を描く
