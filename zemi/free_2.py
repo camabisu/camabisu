@@ -121,14 +121,14 @@ class HappyMove(Node):
 
     # 正方形を描く
     def draw_square(self, x):
-        for _ in range(3):  # 正方形の4辺を描く
+        for _ in range(8):  # 正方形の4辺を描く
             # 1辺を移動
             while not self.move_distance(x):
                 rclpy.spin_once(self)
             self.x0, self.y0 = self.x, self.y  # 次の辺の開始位置を更新
 
-            # 90度回転
-            while not self.rotate_angle(math.pi / 2):  # π/2ラジアン (90度) 回転
+            # 45度回転
+            while not self.rotate_angle(math.pi / 4):  # π/4ラジアン (45度) 回転
                 rclpy.spin_once(self)
             self.yaw0 = self.yaw  # 次の回転の基準角度を更新
 
@@ -153,7 +153,7 @@ def main(args=None):
 
     try:
         print("正方形を描きます...")
-        node.draw_square(2.0)  # 1辺が1mの正方形を描く
+        node.draw_square(4.0)  # 1辺が1mの正方形を描く
         print("円を描きます...")
         node.draw_circle(0.5)  # 半径0.5mの円を描く
     except KeyboardInterrupt:
