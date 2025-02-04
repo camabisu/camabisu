@@ -123,7 +123,7 @@ class HappyMove(Node):
             while not self.move_distance(x):
                 rclpy.spin_once(self)
             self.x0, self.y0 = self.x, self.y  # 次の辺の開始位置を更新
-
+    def draw_rotate_angle(self,yaw):
             # 120度回転
             while not self.rotate_angle(math.pi*2 / 3):  # 2π/3ラジアン (120度) 回転
                 rclpy.spin_once(self)
