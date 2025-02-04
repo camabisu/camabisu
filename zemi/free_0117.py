@@ -164,11 +164,11 @@ def main(args=None):
 
     try:
         print("60°回転するザマス")
-        node.
+        node.drow_rotate_angle(math.pi*2 / 3)
         print("正方形を描きます...")
         node.draw_square(2.0)  # 1辺が2mの正方形を描く
-        print("円を描きます...")
-        node.draw_circle(0.5)  # 半径0.5mの円を描く
+        #print("円を描きます...")
+        #node.draw_circle(0.5)  # 半径0.5mの円を描く
     except KeyboardInterrupt:
         print('Ctrl+Cが押されました．')  # ユーザーが終了した場合
     except ExternalShutdownException:
