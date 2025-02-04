@@ -109,6 +109,7 @@ class HappyMove(Node):
             else:  # 指定時間を超えた場合
                 # ロボットを停止
                 self.set_vel(0.0, 0.0)
+                rclpy.spin_once(self)
                 break  # ループを終了
 
             # 現在の速度コマンドをパブリッシュ
