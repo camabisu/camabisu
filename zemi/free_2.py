@@ -52,7 +52,7 @@ class HappyMove(Node):
 
     # 指定距離を移動する
     def move_distance(self, dist):
-        error = 0.05  # 許容誤差 [m]
+        error = 0.005  # 許容誤差 [m]
         # 現在位置と目標位置の差分を計算
         diff = dist - math.sqrt((self.x - self.x0) ** 2 + (self.y - self.y0) ** 2)
         if math.fabs(diff) > error:  # 誤差が許容範囲を超える場合
@@ -64,7 +64,7 @@ class HappyMove(Node):
 
     # 指定角度を回転する
     def rotate_angle(self, angle):
-        error = 0.05  # 許容誤差 [rad]
+        error = 0.005  # 許容誤差 [rad]
         diff = angle - (self.yaw - self.yaw0) #現在の角度 (self.yaw - self.yaw0) と目標角度 (angle) の差分を計算
         diff = (diff + math.pi) % (2 * math.pi) - math.pi  #回転角が360°を超えるような場合でも、角度を-π～πに正規化
 
@@ -132,14 +132,7 @@ class HappyMove(Node):
                 rclpy.spin_once(self)
             self.yaw0 = self.yaw  # 次の回転の基準角度を更新
 
-    # 円を描く
-    def draw_circle(self, r):
-        linear_speed = 0.2  # 前進速度 [m/s]
-        angular_speed = linear_speed / r  # 円軌道を保つ角速度 [rad/s]
-        circumference = 2 * math.pi * r  # 円周の長さ
-        duration = circumference / linear_speed  # 円を描くのに必要な時間 [秒]
-
-        self.move_time(duration, linear_speed, angular_speed)  # 円軌道を維持
+   
 
     # タイマーコールバック: 現在の速度をパブリッシュ
     def timer_callback(self):
@@ -152,10 +145,9 @@ def main(args=None):
     node = HappyMove()
 
     try:
-        print("正方形を描きます...")
-        node.draw_square(4.0)  # 1辺が1mの正方形を描く
-        print("円を描きます...")
-        node.draw_circle(0.5)  # 半径0.5mの円を描く
+        print("八角形を描きます...")
+        node.draw_square(1.0)  # 1辺が1mの正方形を描く
+      
     except KeyboardInterrupt:
         print('Ctrl+Cが押されました．')  # ユーザーが終了した場合
     except ExternalShutdownException:
