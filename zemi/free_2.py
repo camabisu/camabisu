@@ -146,7 +146,7 @@ def main(args=None):
 
     try:
         print("八角形を描きます...")
-        node.draw_square(1.0)  # 1辺が1mの正方形を描く
+        node.draw_square(1.0)  # 1辺が1mの形を描く
       
     except KeyboardInterrupt:
         print('Ctrl+Cが押されました．')  # ユーザーが終了した場合
