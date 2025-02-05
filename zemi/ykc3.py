@@ -52,21 +52,26 @@ class HappyMove(Node):
 
     # 指定距離を移動する
     def move_distance(self, dist):
-        error = 0.005  # 許容誤差 [m]
-        v = 1
-        if self.x >0:
-            t = v / self.x
-        else:
-            t=1
+        error = 0.01  # 許容誤差 [m]
+        v = 0.3
+        # if self.x >0:
+        #     t = v / self.x
+        #     #t = v /  math.sqrt((self.x) ** 2 + (self.y) ** 2)
+        # else:
+        #     t=1
         ac = 0.25
         # 現在位置と目標位置の差分を計算
         diff = dist - math.sqrt((self.x - self.x0) ** 2 + (self.y - self.y0) ** 2)
-        if diff >0:
-             ac= -1 * ac
-        # else:
-        #     ac = 1 * ac 
+        ac = -0.25 if diff > 0 else 0.25
+        v = 0.5
+        if self.x >0 :
+            t = v / self.x 
+            #t = v+ac /  math.sqrt((self.x) ** 2 + (self.y) ** 2)
+        else:
+            t=1
+        v1 = v * t - ac
         if math.fabs(diff) > error:  # 誤差が許容範囲を超える場合
-            self.set_vel((v*t)+ac , 0.0)  # 前進速度を設定
+            self.set_vel(v1 , 0.0)  # 前進速度を設定
             return False  # 移動中
         else:  # 許容範囲内に到達した場合
             self.set_vel(0.0, 0.0)  # 停止
