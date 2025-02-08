@@ -119,7 +119,7 @@ class HappyMove(Node):
             rclpy.spin_once(self)
 
 
-    # 正方形を描く
+    # 八角形を描く
     def draw_square(self, x):
         for _ in range(8):  # 正方形の4辺を描く
             # 1辺を移動
